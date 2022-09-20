@@ -424,7 +424,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (10:8) {#each answer as item, index}
+    // (11:8) {#each answer as item, index}
     function create_each_block$1(ctx) {
     	let li;
     	let div;
@@ -440,11 +440,11 @@ var app = (function () {
     			h3 = element("h3");
     			t0 = text(t0_value);
     			t1 = space();
-    			add_location(h3, file$1, 12, 20, 223);
+    			add_location(h3, file$1, 13, 20, 224);
     			attr_dev(div, "class", "toDoItems");
-    			add_location(div, file$1, 11, 16, 179);
+    			add_location(div, file$1, 12, 16, 180);
     			attr_dev(li, "class", "svelte-v17vrk");
-    			add_location(li, file$1, 10, 12, 158);
+    			add_location(li, file$1, 11, 12, 159);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -465,7 +465,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(10:8) {#each answer as item, index}",
+    		source: "(11:8) {#each answer as item, index}",
     		ctx
     	});
 
@@ -491,24 +491,16 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "解答内容";
     			t1 = space();
-<<<<<<< HEAD
     			ul = element("ul");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			add_location(h2, file$1, 7, 4, 84);
-    			add_location(ul, file$1, 8, 4, 103);
+    			add_location(h2, file$1, 8, 4, 85);
+    			add_location(ul, file$1, 9, 4, 104);
     			attr_dev(main, "class", "svelte-v17vrk");
-    			add_location(main, file$1, 6, 0, 73);
-=======
-    			h3 = element("h3");
-    			t2 = text(/*answer*/ ctx[0]);
-    			add_location(h2, file$1, 5, 4, 54);
-    			add_location(h3, file$1, 6, 4, 72);
-    			add_location(main, file$1, 4, 0, 43);
->>>>>>> 46a60e89558eacdbf51993233baf5b17cd7564ee
+    			add_location(main, file$1, 7, 0, 74);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
