@@ -1,10 +1,14 @@
 <script>
+<<<<<<< HEAD
     export let answer    
     let array = ["a","v"]
+=======
+    export let answer;
+>>>>>>> 46a60e89558eacdbf51993233baf5b17cd7564ee
 </script>
 
-
 <main>
+<<<<<<< HEAD
     <h2>解答内容</h2> 
     <ul>
         {#each answer as item, index}
@@ -16,6 +20,10 @@
         {/each} 
     </ul>
     
+=======
+    <h2>解答内容</h2>
+    <h3>{answer}</h3>
+>>>>>>> 46a60e89558eacdbf51993233baf5b17cd7564ee
 </main>
 
 <style>

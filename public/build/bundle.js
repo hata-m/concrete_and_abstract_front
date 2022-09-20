@@ -491,6 +491,7 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "解答内容";
     			t1 = space();
+<<<<<<< HEAD
     			ul = element("ul");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -501,6 +502,13 @@ var app = (function () {
     			add_location(ul, file$1, 8, 4, 103);
     			attr_dev(main, "class", "svelte-v17vrk");
     			add_location(main, file$1, 6, 0, 73);
+=======
+    			h3 = element("h3");
+    			t2 = text(/*answer*/ ctx[0]);
+    			add_location(h2, file$1, 5, 4, 54);
+    			add_location(h3, file$1, 6, 4, 72);
+    			add_location(main, file$1, 4, 0, 43);
+>>>>>>> 46a60e89558eacdbf51993233baf5b17cd7564ee
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
