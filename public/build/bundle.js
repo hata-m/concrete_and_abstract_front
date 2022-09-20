@@ -417,12 +417,73 @@ var app = (function () {
 
     const file$1 = "src/AnswerList.svelte";
 
+    function get_each_context$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[2] = list[i];
+    	child_ctx[4] = i;
+    	return child_ctx;
+    }
+
+    // (10:8) {#each answer as item, index}
+    function create_each_block$1(ctx) {
+    	let li;
+    	let div;
+    	let h3;
+    	let t0_value = /*item*/ ctx[2] + "";
+    	let t0;
+    	let t1;
+
+    	const block = {
+    		c: function create() {
+    			li = element("li");
+    			div = element("div");
+    			h3 = element("h3");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			add_location(h3, file$1, 12, 20, 223);
+    			attr_dev(div, "class", "toDoItems");
+    			add_location(div, file$1, 11, 16, 179);
+    			attr_dev(li, "class", "svelte-v17vrk");
+    			add_location(li, file$1, 10, 12, 158);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, li, anchor);
+    			append_dev(li, div);
+    			append_dev(div, h3);
+    			append_dev(h3, t0);
+    			append_dev(li, t1);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*answer*/ 1 && t0_value !== (t0_value = /*item*/ ctx[2] + "")) set_data_dev(t0, t0_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(li);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$1.name,
+    		type: "each",
+    		source: "(10:8) {#each answer as item, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment$1(ctx) {
     	let main;
     	let h2;
     	let t1;
-    	let h3;
-    	let t2;
+    	let ul;
+    	let each_value = /*answer*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
+    	}
 
     	const block = {
     		c: function create() {
@@ -430,11 +491,16 @@ var app = (function () {
     			h2 = element("h2");
     			h2.textContent = "解答内容";
     			t1 = space();
-    			h3 = element("h3");
-    			t2 = text(/*answer*/ ctx[0]);
-    			add_location(h2, file$1, 6, 4, 58);
-    			add_location(h3, file$1, 7, 4, 77);
-    			add_location(main, file$1, 5, 0, 47);
+    			ul = element("ul");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			add_location(h2, file$1, 7, 4, 84);
+    			add_location(ul, file$1, 8, 4, 103);
+    			attr_dev(main, "class", "svelte-v17vrk");
+    			add_location(main, file$1, 6, 0, 73);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -443,16 +509,42 @@ var app = (function () {
     			insert_dev(target, main, anchor);
     			append_dev(main, h2);
     			append_dev(main, t1);
-    			append_dev(main, h3);
-    			append_dev(h3, t2);
+    			append_dev(main, ul);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(ul, null);
+    			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*answer*/ 1) set_data_dev(t2, /*answer*/ ctx[0]);
+    			if (dirty & /*answer*/ 1) {
+    				each_value = /*answer*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$1(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(ul, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
+    			destroy_each(each_blocks, detaching);
     		}
     	};
 
@@ -471,6 +563,7 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('AnswerList', slots, []);
     	let { answer } = $$props;
+    	let array = ["a", "v"];
     	const writable_props = ['answer'];
 
     	Object.keys($$props).forEach(key => {
@@ -481,10 +574,11 @@ var app = (function () {
     		if ('answer' in $$props) $$invalidate(0, answer = $$props.answer);
     	};
 
-    	$$self.$capture_state = () => ({ answer });
+    	$$self.$capture_state = () => ({ answer, array });
 
     	$$self.$inject_state = $$props => {
     		if ('answer' in $$props) $$invalidate(0, answer = $$props.answer);
+    		if ('array' in $$props) array = $$props.array;
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -533,7 +627,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (31:2) {:else}
+    // (32:2) {:else}
     function create_else_block(ctx) {
     	let h20;
     	let t1;
@@ -582,18 +676,18 @@ var app = (function () {
     			t7 = space();
     			button = element("button");
     			button.textContent = "回答を登録する";
-    			add_location(h20, file, 31, 3, 595);
-    			add_location(h3, file, 32, 3, 610);
-    			add_location(ul, file, 33, 3, 643);
-    			add_location(h21, file, 43, 3, 797);
+    			add_location(h20, file, 32, 3, 595);
+    			add_location(h3, file, 33, 3, 610);
+    			add_location(ul, file, 34, 3, 643);
+    			add_location(h21, file, 44, 3, 797);
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "解答欄");
     			input.required = true;
-    			add_location(input, file, 46, 5, 886);
-    			add_location(div, file, 45, 4, 875);
+    			add_location(input, file, 47, 5, 886);
+    			add_location(div, file, 46, 4, 875);
     			attr_dev(button, "type", "submit");
-    			add_location(button, file, 48, 4, 968);
-    			add_location(form, file, 44, 3, 824);
+    			add_location(button, file, 49, 4, 968);
+    			add_location(form, file, 45, 3, 824);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h20, anchor);
@@ -676,7 +770,7 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(31:2) {:else}",
+    		source: "(32:2) {:else}",
     		ctx
     	});
 
@@ -689,7 +783,7 @@ var app = (function () {
     	let current;
 
     	todoinputform = new AnswerList({
-    			props: { answer: /*answer*/ ctx[3] },
+    			props: { answer: /*array*/ ctx[0] },
     			$$inline: true
     		});
 
@@ -703,7 +797,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const todoinputform_changes = {};
-    			if (dirty & /*answer*/ 8) todoinputform_changes.answer = /*answer*/ ctx[3];
+    			if (dirty & /*array*/ 1) todoinputform_changes.answer = /*array*/ ctx[0];
     			todoinputform.$set(todoinputform_changes);
     		},
     		i: function intro(local) {
@@ -772,7 +866,7 @@ var app = (function () {
     	return block;
     }
 
-    // (35:4) {#each array as item, index}
+    // (36:4) {#each array as item, index}
     function create_each_block(ctx) {
     	let li;
     	let div;
@@ -788,11 +882,11 @@ var app = (function () {
     			h3 = element("h3");
     			t0 = text(t0_value);
     			t1 = space();
-    			add_location(h3, file, 37, 7, 728);
+    			add_location(h3, file, 38, 7, 728);
     			attr_dev(div, "class", "toDoItems");
-    			add_location(div, file, 36, 6, 697);
+    			add_location(div, file, 37, 6, 697);
     			attr_dev(li, "class", "svelte-13sh365");
-    			add_location(li, file, 35, 5, 686);
+    			add_location(li, file, 36, 5, 686);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -813,7 +907,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(35:4) {#each array as item, index}",
+    		source: "(36:4) {#each array as item, index}",
     		ctx
     	});
 

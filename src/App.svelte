@@ -26,7 +26,8 @@
 		</button>
 	{:else}
 		{#if answerEntered}
-			<ToDoInputForm answer={answer} />
+
+			<ToDoInputForm answer={array} />
 			<!-- <ToDoList /> -->
 		{:else}
 			<h2>お題</h2>
