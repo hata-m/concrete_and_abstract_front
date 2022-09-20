@@ -19,6 +19,8 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.2",
     "sirv-cli": "^2.0.0",
     "svelte-material-ui": "^6.1.3"
   }

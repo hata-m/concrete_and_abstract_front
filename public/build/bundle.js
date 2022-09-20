@@ -432,9 +432,9 @@ var app = (function () {
     			t1 = space();
     			h3 = element("h3");
     			t2 = text(/*answer*/ ctx[0]);
-    			add_location(h2, file$1, 6, 4, 58);
-    			add_location(h3, file$1, 7, 4, 77);
-    			add_location(main, file$1, 5, 0, 47);
+    			add_location(h2, file$1, 5, 4, 54);
+    			add_location(h3, file$1, 6, 4, 72);
+    			add_location(main, file$1, 4, 0, 43);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
