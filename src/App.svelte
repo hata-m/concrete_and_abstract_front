@@ -1,5 +1,6 @@
 <script>
 	import ToDoInputForm from "./AnswerList.svelte"
+	import {getAnswers} from "./api/api"
 	let array = [];
 	let probleAcquired = true
 	let answerEntered = false
@@ -7,9 +8,10 @@
 	let answer = ""
 	let answerList = []
 
-	function handleSubmit() {
+	async function handleSubmit() {
   		if (answer) {
     		answerEntered  = true
+			answerList =  await getAnswers(1)
   		}
 	}
 	function handleClick() {
@@ -27,7 +29,7 @@
 		</button>
 	{:else}
 		{#if answerEntered}
-			<!-- answerList =  を追加する処理 -->
+			
 			<ToDoInputForm answer={answerList} />
 		{:else}
 			<h2>お題</h2>
