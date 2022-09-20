@@ -5,6 +5,7 @@
 	let answerEntered = false
 	let problem = "問題文取得前"
 	let answer = ""
+	let answerList = []
 
 	function handleSubmit() {
   		if (answer) {
@@ -26,9 +27,8 @@
 		</button>
 	{:else}
 		{#if answerEntered}
-
-			<ToDoInputForm answer={array} />
-			<!-- <ToDoList /> -->
+			<!-- answerList =  を追加する処理 -->
+			<ToDoInputForm answer={answerList} />
 		{:else}
 			<h2>お題</h2>
 			<h3>下記の単語に共通する単語を考えてください</h3>

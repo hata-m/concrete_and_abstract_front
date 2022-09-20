@@ -622,8 +622,8 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[8] = list[i];
-    	child_ctx[10] = i;
+    	child_ctx[9] = list[i];
+    	child_ctx[11] = i;
     	return child_ctx;
     }
 
@@ -676,18 +676,18 @@ var app = (function () {
     			t7 = space();
     			button = element("button");
     			button.textContent = "回答を登録する";
-    			add_location(h20, file, 32, 3, 595);
-    			add_location(h3, file, 33, 3, 610);
-    			add_location(ul, file, 34, 3, 643);
-    			add_location(h21, file, 44, 3, 797);
+    			add_location(h20, file, 32, 3, 629);
+    			add_location(h3, file, 33, 3, 644);
+    			add_location(ul, file, 34, 3, 677);
+    			add_location(h21, file, 44, 3, 831);
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "解答欄");
     			input.required = true;
-    			add_location(input, file, 47, 5, 886);
-    			add_location(div, file, 46, 4, 875);
+    			add_location(input, file, 47, 5, 920);
+    			add_location(div, file, 46, 4, 909);
     			attr_dev(button, "type", "submit");
-    			add_location(button, file, 49, 4, 968);
-    			add_location(form, file, 45, 3, 824);
+    			add_location(button, file, 49, 4, 1002);
+    			add_location(form, file, 45, 3, 858);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h20, anchor);
@@ -712,8 +712,8 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input, "input", /*input_input_handler*/ ctx[6]),
-    					listen_dev(form, "submit", prevent_default(/*handleSubmit*/ ctx[4]), false, true, false)
+    					listen_dev(input, "input", /*input_input_handler*/ ctx[7]),
+    					listen_dev(form, "submit", prevent_default(/*handleSubmit*/ ctx[5]), false, true, false)
     				];
 
     				mounted = true;
@@ -777,13 +777,13 @@ var app = (function () {
     	return block;
     }
 
-    // (28:2) {#if answerEntered}
+    // (29:2) {#if answerEntered}
     function create_if_block_1(ctx) {
     	let todoinputform;
     	let current;
 
     	todoinputform = new AnswerList({
-    			props: { answer: /*array*/ ctx[0] },
+    			props: { answer: /*answerList*/ ctx[4] },
     			$$inline: true
     		});
 
@@ -795,11 +795,7 @@ var app = (function () {
     			mount_component(todoinputform, target, anchor);
     			current = true;
     		},
-    		p: function update(ctx, dirty) {
-    			const todoinputform_changes = {};
-    			if (dirty & /*array*/ 1) todoinputform_changes.answer = /*array*/ ctx[0];
-    			todoinputform.$set(todoinputform_changes);
-    		},
+    		p: noop,
     		i: function intro(local) {
     			if (current) return;
     			transition_in(todoinputform.$$.fragment, local);
@@ -818,14 +814,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(28:2) {#if answerEntered}",
+    		source: "(29:2) {#if answerEntered}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (23:1) {#if probleAcquired}
+    // (24:1) {#if probleAcquired}
     function create_if_block(ctx) {
     	let button;
     	let mounted;
@@ -835,13 +831,13 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			button.textContent = "問題文を表示する";
-    			add_location(button, file, 23, 2, 428);
+    			add_location(button, file, 24, 2, 449);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*handleClick*/ ctx[5], { once: true }, false, false);
+    				dispose = listen_dev(button, "click", /*handleClick*/ ctx[6], { once: true }, false, false);
     				mounted = true;
     			}
     		},
@@ -859,7 +855,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(23:1) {#if probleAcquired}",
+    		source: "(24:1) {#if probleAcquired}",
     		ctx
     	});
 
@@ -871,7 +867,7 @@ var app = (function () {
     	let li;
     	let div;
     	let h3;
-    	let t0_value = /*item*/ ctx[8] + "";
+    	let t0_value = /*item*/ ctx[9] + "";
     	let t0;
     	let t1;
 
@@ -882,11 +878,11 @@ var app = (function () {
     			h3 = element("h3");
     			t0 = text(t0_value);
     			t1 = space();
-    			add_location(h3, file, 38, 7, 728);
+    			add_location(h3, file, 38, 7, 762);
     			attr_dev(div, "class", "toDoItems");
-    			add_location(div, file, 37, 6, 697);
+    			add_location(div, file, 37, 6, 731);
     			attr_dev(li, "class", "svelte-13sh365");
-    			add_location(li, file, 36, 5, 686);
+    			add_location(li, file, 36, 5, 720);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -896,7 +892,7 @@ var app = (function () {
     			append_dev(li, t1);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*array*/ 1 && t0_value !== (t0_value = /*item*/ ctx[8] + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*array*/ 1 && t0_value !== (t0_value = /*item*/ ctx[9] + "")) set_data_dev(t0, t0_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(li);
@@ -940,9 +936,9 @@ var app = (function () {
     			h1.textContent = "アプリケーションへようこそ！";
     			t1 = space();
     			if_block.c();
-    			add_location(h1, file, 21, 1, 378);
+    			add_location(h1, file, 22, 1, 399);
     			attr_dev(main, "class", "svelte-13sh365");
-    			add_location(main, file, 20, 0, 370);
+    			add_location(main, file, 21, 0, 391);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1015,6 +1011,7 @@ var app = (function () {
     	let answerEntered = false;
     	let problem = "問題文取得前";
     	let answer = "";
+    	let answerList = [];
 
     	function handleSubmit() {
     		if (answer) {
@@ -1046,6 +1043,7 @@ var app = (function () {
     		answerEntered,
     		problem,
     		answer,
+    		answerList,
     		handleSubmit,
     		handleClick
     	});
@@ -1056,6 +1054,7 @@ var app = (function () {
     		if ('answerEntered' in $$props) $$invalidate(2, answerEntered = $$props.answerEntered);
     		if ('problem' in $$props) problem = $$props.problem;
     		if ('answer' in $$props) $$invalidate(3, answer = $$props.answer);
+    		if ('answerList' in $$props) $$invalidate(4, answerList = $$props.answerList);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -1067,6 +1066,7 @@ var app = (function () {
     		probleAcquired,
     		answerEntered,
     		answer,
+    		answerList,
     		handleSubmit,
     		handleClick,
     		input_input_handler
