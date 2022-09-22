@@ -1,10 +1,10 @@
 <script>
 	import AnswerList from "./AnswerList.svelte";
-	import { getAnswers, postAnswer } from "./api/api";
+	import { getAnswers, postAnswer, getSubjects} from "./api/api";
 	//　秦環境　テスト用
     export let hataTest;
     export let userName;
-    export let array;
+    export let subjects;
     export let roomId;
 
 	let answerEntered = false;
@@ -39,7 +39,7 @@
 		<h2>お題</h2>
 		<h3>下記の単語に共通する単語を考えてください</h3>
 		<ul>
-			{#each array as item, index}
+			{#each subjects as item, index}
 				<li>
 					<div class="problemItems">
 						<h3>{item}</h3>

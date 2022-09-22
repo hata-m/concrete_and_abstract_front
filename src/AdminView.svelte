@@ -1,18 +1,28 @@
 <script>
     import ProblemView from "./ProblemView.svelte";
-	import { getAnswers, postAnswer } from "./api/api";
+	import { getAnswers, postAnswer, getSubjects} from "./api/api";
 	//　秦環境　テスト用
     export let hataTest;
 
-	let array = [];
+	let subjects = [];
 	let probleAcquired = true;
 	let userName = ""
     let roomId =""
 
-	function handleClick() {
+	async function handleClick() {
 		if (userName) {
-			array = ["犬", "猿", "雉"];
-			probleAcquired = false;
+            if(hataTest){
+                subjects = ["犬", "猿", "雉"];
+			    probleAcquired = false;
+            }else{
+                const subjectArray = await getSubjects(1);
+                subjects = subjectArray
+                if(subjects){
+                    probleAcquired = false;
+                }else{
+                    alert("nodata")
+                }
+            }
   		}
 	}
 
@@ -28,7 +38,7 @@
 			<button type="submit"> 部屋を生成し、問題文を表示する </button>
 		</form>
 	{:else}
-		<ProblemView  hataTest={hataTest} userName={userName} array= {array} roomId={roomId}/>
+		<ProblemView  hataTest={hataTest} userName={userName} subjects= {subjects} roomId={roomId}/>
 	{/if}
 </main>
 

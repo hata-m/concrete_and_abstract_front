@@ -4,7 +4,19 @@ import axios from 'axios';
 const URL_BASE = "http://localhost:3000/"
 
 const getAnswers = async (subjectId) => {
-    const url = URL_BASE + "database/" + subjectId;
+    const url = URL_BASE + "concrete-and-abstract/answers/";
+    try {
+        const res = await axios.get(url);
+        const answers = res.data;
+        return answers;
+    } catch (error) {
+        console.log(error);
+    }
+    return null;
+}
+
+const getSubjects = async (subjectId) => {
+    const url = URL_BASE + "concrete-and-abstract/subject";
     try {
         const res = await axios.get(url);
         const answers = res.data;
@@ -16,7 +28,7 @@ const getAnswers = async (subjectId) => {
 }
 
 const postAnswer = async (subjectId, answer) => {
-    const url = URL_BASE + "database";
+    const url = URL_BASE + "concrete-and-abstract/answers";
     const reqBody = {
         subjectId: subjectId,
         answer: answer
@@ -30,4 +42,4 @@ const postAnswer = async (subjectId, answer) => {
     }
 }
 
-export { getAnswers, postAnswer }
+export { getAnswers, postAnswer, getSubjects}

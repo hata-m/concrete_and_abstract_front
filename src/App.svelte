@@ -7,7 +7,7 @@
 	let roomflag = true;
 
 	//　秦環境　テスト用
-	let hataTest = true;
+	let hataTest = false;
 
 	function createRoomClick() {
 		roomflag = true;
