@@ -1,13 +1,19 @@
 <script>
-	import ToDoInputForm from "./AnswerList.svelte";
+	import AnswerList from "./AnswerList.svelte";
+	// import MainView from "./MainView.svelte"
 	import { getAnswers, postAnswer } from "./api/api";
 	let array = [];
 	let probleAcquired = true;
 	let answerEntered = false;
 	let answer = "";
 	let answerList = [];
-	let problem = "問題文を取得前";
+	
+	let userName = ""
+
+	//　秦環境　テスト用
 	let hataTest = false;
+
+
 
 	async function handleSubmit() {
 		if (answer) {
@@ -24,32 +30,43 @@
 	}
 
 	function handleClick() {
-		problem = "問題文を取得しました";
-		array = ["犬", "猿", "雉"];
-		probleAcquired = false;
+		if (userName) {
+			array = ["犬", "猿", "雉"];
+			probleAcquired = false;
+  		}
 	}
+
 </script>
 
 <main>
 	<h1>アプリケーションへようこそ！</h1>
 	{#if probleAcquired}
-		<button on:click|once={handleClick}> 問題文を表示する </button>
+		<h3>ユーザ名を入力してください。</h3>
+		<form on:submit|preventDefault={handleClick}>
+			<div>
+				<input bind:value={userName} type="text" placeholder="ユーザ名" required>
+			</div>
+			<button type="submit"> 問題文を表示する </button>
+		</form>
+
+		
+		
 	{:else if answerEntered}
-		<ToDoInputForm answer={answerList} hataTest={hataTest}/>
+		<AnswerList answer={answerList} hataTest={hataTest} userName={userName}/>
 	{:else}
 		<h2>お題</h2>
 		<h3>下記の単語に共通する単語を考えてください</h3>
 		<ul>
 			{#each array as item, index}
 				<li>
-					<div class="ProblemItems">
+					<div class="problemItems">
 						<h3>{item}</h3>
 					</div>
 				</li>
 			{/each}
 		</ul>
 
-		<h2>お題の回答を記入してください</h2>
+		<h2>{userName} さんの回答を記入してください</h2>
 		<form on:submit|preventDefault={handleSubmit}>
 			<div>
 				<input

@@ -1,10 +1,7 @@
 <script>
-    import { element } from "svelte/internal";
-
     export let hataTest;
     export let answer;
-    let array = ["a", "v"];
-    let tortilla = 'Plain';
+    export let userName;
     let labeldata =  "投票前";
     $: label = labeldata;
     function voteButtonClick() {
@@ -13,11 +10,13 @@
 		// var radioItem = element.vote;
         var itemName = hoge.vote.value;
         if(itemName!=""){
+            labeldata = userName+"さんは \""
             if(!hataTest){
-                labeldata = answer[itemName].answer+" に投票されました"
+                labeldata = labeldata + answer[itemName].answer
             }else{
-                labeldata = answer[itemName]+" に投票されました"
+                labeldata = labeldata + answer[itemName]
             }
+            labeldata = labeldata +"\" に投票しました"
             
         }else{
             labeldata = "投票項目が選択されていません" 
