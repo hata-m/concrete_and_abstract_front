@@ -4,23 +4,28 @@
 	let array = [];
 	let probleAcquired = true;
 	let answerEntered = false;
-	let problem = "問題文取得前";
 	let answer = "";
 	let answerList = [];
+	let problem = "問題文を取得前";
+	let hataTest = false;
 
 	async function handleSubmit() {
 		if (answer) {
 			answerEntered = true;
 			// TODO subjectIdを動的に
-			const didSucceed = await postAnswer(1, answer);
-			const answers = await getAnswers(1);
-			answerList = answers;
+			if(!hataTest){
+				const didSucceed = await postAnswer(1, answer);
+				const answers = await getAnswers(1);
+				answerList = answers;
+			}else{
+				answerList = ["犬","猿"]
+			}
 		}
 	}
 
 	function handleClick() {
 		problem = "問題文を取得しました";
-		array = ["a", "b", "c"];
+		array = ["犬", "猿", "雉"];
 		probleAcquired = false;
 	}
 </script>
@@ -37,7 +42,7 @@
 		<ul>
 			{#each array as item, index}
 				<li>
-					<div class="toDoItems">
+					<div class="ProblemItems">
 						<h3>{item}</h3>
 					</div>
 				</li>
