@@ -1,7 +1,7 @@
 <script>
     import { element } from "svelte/internal";
 
-
+    export let hataTest;
     export let answer;
     let array = ["a", "v"];
     let tortilla = 'Plain';
@@ -13,7 +13,12 @@
 		// var radioItem = element.vote;
         var itemName = hoge.vote.value;
         if(itemName!=""){
-            labeldata = answer[itemName]+" に投票されました"
+            if(!hataTest){
+                labeldata = answer[itemName].answer+" に投票されました"
+            }else{
+                labeldata = answer[itemName]+" に投票されました"
+            }
+            
         }else{
             labeldata = "投票項目が選択されていません" 
         }
@@ -28,7 +33,12 @@
             <li>
                 <div class="AnswerItems">
                     <input type="radio" name="vote" value={index}>
-                    <span>{item}</span>
+                    {#if hataTest}
+                        <span>{item}</span>
+                    {:else}
+                        <span>{item.answer}</span>
+                    {/if}
+                    
                     <br/>
                 </div>
             </li>

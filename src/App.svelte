@@ -35,7 +35,7 @@
 	{#if probleAcquired}
 		<button on:click|once={handleClick}> 問題文を表示する </button>
 	{:else if answerEntered}
-		<ToDoInputForm answer={answerList} />
+		<ToDoInputForm answer={answerList} hataTest={hataTest}/>
 	{:else}
 		<h2>お題</h2>
 		<h3>下記の単語に共通する単語を考えてください</h3>
