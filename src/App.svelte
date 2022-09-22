@@ -1,6 +1,6 @@
 <script>
 	import ToDoInputForm from "./AnswerList.svelte";
-	import { getAnswers } from "./api/api";
+	import { getAnswers, postAnswer } from "./api/api";
 	let array = [];
 	let probleAcquired = true;
 	let answerEntered = false;
@@ -11,6 +11,8 @@
 	async function handleSubmit() {
 		if (answer) {
 			answerEntered = true;
+			// TODO subjectIdを動的に
+			const didSucceed = await postAnswer(1, answer);
 			const answers = await getAnswers(1);
 			answerList = answers;
 		}

@@ -15,4 +15,19 @@ const getAnswers = async (subjectId) => {
     return null;
 }
 
-export { getAnswers }
+const postAnswer = async (subjectId, answer) => {
+    const url = URL_BASE + "database";
+    const reqBody = {
+        subjectId: subjectId,
+        answer: answer
+    }
+    try {
+        const res = await axios.post(url, reqBody);
+        return res.status === 201
+    } catch (error) {
+        console.log(error);
+        return false
+    }
+}
+
+export { getAnswers, postAnswer }
