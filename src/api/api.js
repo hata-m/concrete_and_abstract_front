@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // TODO: .envファイルから読み込めないため、ここで指定
-const URL_BASE = "http://localhost:3000/"
+const URL_BASE = "https://concrete-and-abstract-nestjs-node.onrender.com/"
 
 const getAnswers = async (subjectId) => {
     const url = URL_BASE + "concrete-and-abstract/answers/";
@@ -42,4 +42,4 @@ const postAnswer = async (subjectId, answer) => {
     }
 }
 
-export { getAnswers, postAnswer, getSubjects}
+export { getAnswers, postAnswer, getSubjects }
