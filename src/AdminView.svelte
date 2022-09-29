@@ -1,7 +1,6 @@
 <script>
 	import ProblemView from "./ProblemView.svelte";
 	import { getAnswers, postAnswer, getSubjects } from "./api/api";
-	//　秦環境　テスト用
 
 	let subjects = [];
 	let probleAcquired = true;
