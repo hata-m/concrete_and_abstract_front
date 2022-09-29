@@ -48,8 +48,17 @@
 	}
 
 	button {
+		color: white;
 		margin: 5px;
 		height: 100px;
 		width: 250px;
+		cursor: pointer;
+		background-color: #3e3f46;
+		border: 0;
+	}
+
+	button:hover {
+		transition-duration: 500ms;
+		background-color: #33a3ee;
 	}
 </style>
