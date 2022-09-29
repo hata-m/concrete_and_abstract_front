@@ -12,13 +12,12 @@
     let labeldata = "投票前";
     $: label = labeldata;
     async function voteButtonClick() {
-        labeldata = "押されました";
-        let hoge = document.getElementById("foo");
+        let hoge = document.getElementById("radio_form");
         var itemName = hoge.vote.value;
         if (itemName != "") {
             voteItemName = answer[itemName];
-            const didVote = await postVoteAnswer(1,voteItemName, userName)
-            const didSucceed = await getVoteResult(1);
+            const didVote = await postVoteAnswer(roomId,voteItemName, userName)
+            const didSucceed = await getVoteResult(roomId);
             voteResult = didSucceed;
             sort("votes");
             console.log("voteResult"+voteResult)
@@ -46,17 +45,16 @@
 
 <main>
     {#if voteFlag}
-        <VoteResult voteResult={voteResult} userName={userName} itemName={voteItemName} roomID={roomId}/>
-        <!-- <VoteResult userName={userName} itemName={voteItemName}  roomID={roomId} /> -->
+        <VoteResult voteResult={voteResult} userName={userName} itemName={voteItemName} roomId={roomId}/>
 	{:else}
+        <h1 id="votedata">{label}</h1>
         <h2>解答内容</h2>
-        <form id="foo">
+        <form id="radio_form">
             <ul>
                 {#each answer as item, index}
                     <li>
                         <div class="AnswerItems">
-                            <input type="radio" name="vote" value={index} />
-                            <span>{item}</span>
+                            <input type="radio" name="vote" value={index} /> {item}
                             <br />
                         </div>
                     </li>
@@ -64,7 +62,6 @@
             </ul>
         </form>
         <button on:click={voteButtonClick}> 投票する </button>
-        <h1 id="votedata">{label}</h1>
 	{/if}
     
 </main>
@@ -77,14 +74,12 @@
         margin: 0 auto;
     }
     ul {
-        /* リストを横並びにする */
-        display: flex;
-        flex-flow: column;
+        list-style-type: none;
+        padding: 1em;
     }
     li {
         /* リストを横並びにする */
-        list-style-type: none;
-        padding: 0.5em;
+        /* list-style-type: none; */
         text-align: left;
         /* 見た目整える用 */
         background: #f0f8ff;

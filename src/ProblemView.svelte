@@ -15,8 +15,8 @@
 		if (answer) {
 			answerEntered = true;
 			// TODO subjectIdを動的に
-			const didSucceed = await postAnswer(1, answer);
-			const answers = await getAnswers(1);
+			const didSucceed = await postAnswer(roomId, answer);
+			const answers = await getAnswers(roomId);
 			answerList = answers;
 		}
 	}

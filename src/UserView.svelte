@@ -5,12 +5,12 @@
 	let subjects = [];
 	let probleAcquired = true;
 	let userName = "";
-	let roomId = "";
+	let roomId = 0;
 
 	async function handleClick() {
 		if (userName && roomId) {
 			// TODO subjectIDを動的に
-			const subjectArray = await getSubjects(1);
+			const subjectArray = await getSubjects(roomId);
 			subjects = subjectArray;
 			if (subjects) {
 				probleAcquired = false;
