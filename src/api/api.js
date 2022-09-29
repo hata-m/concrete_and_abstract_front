@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-// TODO: .envファイルから読み込めないため、ここで指定
+// NOTE: .envファイルから読み込めないため、ここで指定
 const URL_BASE = "https://concrete-and-abstract-nestjs-node.onrender.com/"
 
 const getAnswers = async (subjectId) => {
-    const url = URL_BASE + "concrete-and-abstract/answers/";
+    const url = URL_BASE + "concrete-and-abstract/answers";
     try {
         const res = await axios.get(url);
         const answers = res.data;
@@ -16,7 +16,7 @@ const getAnswers = async (subjectId) => {
 }
 
 const getSubjects = async (subjectId) => {
-    const url = URL_BASE + "concrete-and-abstract/subject";
+    const url = URL_BASE + "concrete-and-abstract/subjects";
     try {
         const res = await axios.get(url);
         const answers = res.data;

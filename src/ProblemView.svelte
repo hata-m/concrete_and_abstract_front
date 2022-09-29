@@ -1,41 +1,34 @@
 <script>
 	import AnswerList from "./AnswerList.svelte";
-	import { getAnswers, postAnswer, getSubjects} from "./api/api";
-	//　秦環境　テスト用
-    export let hataTest;
-    export let userName;
-    export let subjects;
-    export let roomId;
+	import { getAnswers, postAnswer, getSubjects } from "./api/api";
+	export let userName;
+	export let subjects;
+	export let roomId;
 
 	let answerEntered = false;
 	let answer = "";
 	let answerList = [];
 
-    $: roomIdStr = "room: " + roomId;
+	$: roomIdStr = "room: " + roomId;
 
 	async function handleSubmit() {
 		if (answer) {
 			answerEntered = true;
 			// TODO subjectIdを動的に
-			if(!hataTest){
-				const didSucceed = await postAnswer(1, answer);
-				const answers = await getAnswers(1);
-				answerList = answers;
-			}else{
-				answerList = ["犬","猿"]
-			}
+			const didSucceed = await postAnswer(1, answer);
+			const answers = await getAnswers(1);
+			answerList = answers;
 		}
 	}
-
 </script>
 
-<main>	
+<main>
 	{#if answerEntered}
-		<AnswerList answer={answerList} hataTest={hataTest} userName={userName}/>
+		<AnswerList answer={answerList} {userName} />
 	{:else}
-        <div>
-            <h3 class="room">{roomIdStr}</h3>        
-        </div>
+		<div>
+			<h3 class="room">{roomIdStr}</h3>
+		</div>
 		<h2>お題</h2>
 		<h3>下記の単語に共通する単語を考えてください</h3>
 		<ul>
@@ -80,7 +73,7 @@
 		background: #fa8072;
 		margin-right: 5px;
 	}
-    .room {
-        text-align: right;
-    }
+	.room {
+		text-align: right;
+	}
 </style>

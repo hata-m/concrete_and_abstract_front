@@ -1,31 +1,24 @@
 <script>
-    import ProblemView from "./ProblemView.svelte";
-	import { getAnswers, postAnswer, getSubjects} from "./api/api";
-	//　秦環境　テスト用
-    export let hataTest;
+	import ProblemView from "./ProblemView.svelte";
+	import { getAnswers, postAnswer, getSubjects } from "./api/api";
 
 	let subjects = [];
 	let probleAcquired = true;
 	let userName = "";
-    let roomId="";
+	let roomId = "";
 
 	async function handleClick() {
 		if (userName && roomId) {
-            if(hataTest){
-                subjects = ["犬", "猿", "雉"];
-			    probleAcquired = false;
-            }else{
-                const subjectArray = await getSubjects(1);
-                subjects = subjectArray
-                if(subjects){
-                    probleAcquired = false;
-                }else{
-                    alert("nodata")
-                }
-            }
-  		}
+			// TODO subjectIDを動的に
+			const subjectArray = await getSubjects(1);
+			subjects = subjectArray;
+			if (subjects) {
+				probleAcquired = false;
+			} else {
+				alert("nodata");
+			}
+		}
 	}
-
 </script>
 
 <main>
@@ -33,15 +26,25 @@
 		<h3>ユーザ名とRoomIDを入力してください。</h3>
 		<form on:submit|preventDefault={handleClick}>
 			<div>
-				<input bind:value={userName} type="text" placeholder="ユーザ名" required>
+				<input
+					bind:value={userName}
+					type="text"
+					placeholder="ユーザ名"
+					required
+				/>
 			</div>
-            <div>
-                <input bind:value={roomId} type="text" placeholder="RoomID" required>
+			<div>
+				<input
+					bind:value={roomId}
+					type="text"
+					placeholder="RoomID"
+					required
+				/>
 			</div>
 			<button type="submit"> 問題文を表示する </button>
 		</form>
 	{:else}
-        <ProblemView  hataTest={hataTest} userName={userName} subjects= {subjects} roomId={roomId}/>
+		<ProblemView {userName} {subjects} {roomId} />
 	{/if}
 </main>
 
