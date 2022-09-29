@@ -23,12 +23,13 @@
 </script>
 
 <main>
+	<div>
+		<h3 class="room">{roomIdStr}</h3>
+	</div>
 	{#if answerEntered}
-		<AnswerList answer={answerList} {userName} />
+		<AnswerList answer={answerList} {userName} roomId={roomId}/>
 	{:else}
-		<div>
-			<h3 class="room">{roomIdStr}</h3>
-		</div>
+
 		<h2>お題</h2>
 		<h3>下記の単語に共通する単語を考えてください</h3>
 		<ul>
