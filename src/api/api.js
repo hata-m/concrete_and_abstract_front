@@ -71,4 +71,4 @@ const postVoteAnswer = async (subjectId, answer, user) => {
 }
 
 
-export { getAnswers, postAnswer, getSubjects, getVoteResult, postVoteAnswer}
+export { getAnswers, postAnswer, getSubjects, getVoteResult, postVoteAnswer }

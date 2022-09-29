@@ -1,5 +1,6 @@
 <script>
 	import ProblemView from "./ProblemView.svelte";
+	import MakeSubjects from "./MakeSubjects.svelte";
 	import { getAnswers, postAnswer, getSubjects } from "./api/api";
 
 	let subjects = [];
@@ -10,13 +11,14 @@
 	async function handleClick() {
 		if (userName) {
 			// TODO subectIDを動的に
-			const subjectArray = await getSubjects(roomId);
-			subjects = subjectArray;
-			if (subjects) {
-				probleAcquired = false;
-			} else {
-				alert("nodata");
-			}
+			// const subjectArray = await getSubjects(roomId);
+			// subjects = subjectArray;
+			// if (subjects) {
+			// 	probleAcquired = false;
+			// } else {
+			// 	alert("nodata");
+			// }
+			probleAcquired = false;
 		}
 	}
 </script>
@@ -36,7 +38,8 @@
 			<button type="submit"> 部屋を生成し、問題文を表示する </button>
 		</form>
 	{:else}
-		<ProblemView {userName} {subjects} {roomId} />
+		<!-- <ProblemView {userName} {subjects} {roomId} /> -->
+		<MakeSubjects />
 	{/if}
 </main>
 
