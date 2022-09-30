@@ -1,26 +1,23 @@
 <script>
-    let subjects = ["fsafa"];
+    import { registeredSubjects } from "./store/store";
+
     let subject = "";
 
-    $: mutSubjects = subjects;
-
     function registerSubject() {
-        subjects.push(subject);
+        $registeredSubjects = [...$registeredSubjects, subject];
     }
+
+    function onSubmit() {}
 </script>
 
 <main>
-    <div>
-        <ul>
-            {#each mutSubjects as item, index}
-                <li>
-                    <div class="items">
-                        {item}
-                        <br />
-                    </div>
-                </li>
-            {/each}
-        </ul>
+    <div class="item-box">
+        {#each $registeredSubjects as sub}
+            <div class="items">
+                {sub}
+                <br />
+            </div>
+        {/each}
     </div>
     <div class="box">
         <form class="subject-form">
@@ -36,15 +33,24 @@
             <button
                 type="button"
                 class="btn"
-                on:click|preventDefault={registerSubject}>submit</button
+                on:click|preventDefault={registerSubject}>追加</button
             >
         </form>
+    </div>
+    <div>
+        <button type="button" class="btn" on:click={onSubmit}> 登録 </button>
     </div>
 </main>
 
 <style>
-    main {
+    .item-box {
+        border: 3px solid #eee;
+    }
+
+    .box {
         display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .subject-form {
