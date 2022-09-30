@@ -1,0 +1,44 @@
+<script>
+    import { push } from "svelte-spa-router";
+</script>
+
+<main>
+    <h1>アプリケーションへようこそ！</h1>
+    <div class="room">
+        <form on:click={() => push("/create-room")}>
+            <button> 部屋を作成する </button>
+        </form>
+        <form on:click={() => push("/join-room")}>
+            <button> 部屋に参加する </button>
+        </form>
+    </div>
+</main>
+
+<style>
+    main {
+        text-align: center;
+        padding: 1em;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .room {
+        display: flex;
+        justify-content: center;
+    }
+
+    button {
+        color: white;
+        margin: 5px;
+        height: 100px;
+        width: 250px;
+        cursor: pointer;
+        background-color: #3e3f46;
+        border: 0;
+    }
+
+    button:hover {
+        transition-duration: 500ms;
+        background-color: #33a3ee;
+    }
+</style>
