@@ -2,6 +2,7 @@
 	import ProblemView from "./ProblemView.svelte";
 	import MakeSubjects from "./MakeSubjects.svelte";
 	import { getAnswers, postAnswer, getSubjects } from "./api/api";
+	import { registeredUserName, registeredRoomId } from "./store/store";
 
 	let subjects = [];
 	let probleAcquired = true;
@@ -18,6 +19,8 @@
 			// } else {
 			// 	alert("nodata");
 			// }
+			registeredUserName.update(userName);
+			registeredRoomId.update(roomId);
 			probleAcquired = false;
 		}
 	}

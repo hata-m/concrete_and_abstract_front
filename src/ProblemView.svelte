@@ -1,22 +1,21 @@
 <script>
 	import AnswerList from "./AnswerList.svelte";
 	import { getAnswers, postAnswer, getSubjects } from "./api/api";
-	export let userName;
+	import { registeredUserName, registeredRoomId } from "./store/store";
 	export let subjects;
-	export let roomId;
 
 	let answerEntered = false;
 	let answer = "";
 	let answerList = [];
 
-	$: roomIdStr = "room: " + roomId;
+	$: roomIdStr = "room: " + $registeredRoomId;
 
 	async function handleSubmit() {
 		if (answer) {
 			answerEntered = true;
 			// TODO subjectIdを動的に
-			const didSucceed = await postAnswer(roomId, answer);
-			const answers = await getAnswers(roomId);
+			const didSucceed = await postAnswer($registeredRoomId, answer);
+			const answers = await getAnswers($registeredRoomId);
 			answerList = answers;
 		}
 	}
@@ -27,7 +26,7 @@
 		<h3 class="room">{roomIdStr}</h3>
 	</div>
 	{#if answerEntered}
-		<AnswerList answer={answerList} {userName} roomId={roomId}/>
+		<AnswerList answer={answerList}/>
 	{:else}
 
 		<h2>お題</h2>
@@ -42,7 +41,7 @@
 			{/each}
 		</ul>
 
-		<h2>{userName} さんの回答を記入してください</h2>
+		<h2>{$registeredUserName} さんの回答を記入してください</h2>
 		<form on:submit|preventDefault={handleSubmit}>
 			<div>
 				<input

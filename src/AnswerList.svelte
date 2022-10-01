@@ -1,9 +1,9 @@
 <script>
     import VoteResult from "./VoteResult.svelte";
     import { getAnswers, postAnswer, getSubjects, getVoteResult, postVoteAnswer } from "./api/api";
+    import { registeredUserName, registeredRoomId } from "./store/store";
     export let answer;
-    export let userName;
-    export let roomId;
+
     
     let voteFlag = false;
     let voteResult=[];
@@ -16,8 +16,8 @@
         var itemName = hoge.vote.value;
         if (itemName != "") {
             voteItemName = answer[itemName].answer;
-            const didVote = await postVoteAnswer(roomId,voteItemName, userName)
-            const didSucceed = await getVoteResult(roomId);
+            const didVote = await postVoteAnswer($registeredRoomId,voteItemName, $registeredUserName)
+            const didSucceed = await getVoteResult($registeredRoomId);
             voteResult = didSucceed;
             sort("count");
             console.log("voteResult"+voteResult)
@@ -45,7 +45,8 @@
 
 <main>
     {#if voteFlag}
-        <VoteResult voteResult={voteResult} userName={userName} itemName={voteItemName} roomId={roomId}/>
+        <!-- <VoteResult voteResult={voteResult} userName={userName} itemName={voteItemName} roomId={roomId}/> -->
+        <VoteResult voteResult={voteResult} itemName={voteItemName}/>
 	{:else}
         <h1 id="votedata">{label}</h1>
         <h2>解答内容</h2>

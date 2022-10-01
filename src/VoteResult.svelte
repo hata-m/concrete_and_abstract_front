@@ -1,18 +1,16 @@
 <script>
     import { getAnswers, postAnswer, getSubjects, getVoteResult, postVoteAnswer } from "./api/api";
+    import { registeredUserName, registeredRoomId } from "./store/store";
     export let voteResult;
     export let itemName;
-    export let userName;
-    export let roomId;
 
     $: resultdata=voteResult;
     var reloadData=[]
 
     async function reloadButtonClick() {
-            var didSucceed = await getVoteResult(roomId);
+            var didSucceed = await getVoteResult($registeredRoomId);
             reloadData = didSucceed;
             sort("count");
-            userName;
             resultdata=reloadData;
     }
 	

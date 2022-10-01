@@ -1,7 +1,7 @@
 <script>
 	import ProblemView from "./ProblemView.svelte";
 	import { getAnswers, postAnswer, getSubjects } from "./api/api";
-
+    import { registeredUserName, registeredRoomId } from "./store/store";
 	let subjects = [];
 	let probleAcquired = true;
 	let userName = "";
@@ -10,7 +10,9 @@
 	async function handleClick() {
 		if (userName && roomId) {
 			// TODO subjectIDを動的に
-			const subjectArray = await getSubjects(roomId);
+			registeredRoomId.set(roomId);
+			registeredUserName.set(userName);
+			const subjectArray = await getSubjects($registeredRoomId);
 			subjects = subjectArray;
 			if (subjects) {
 				probleAcquired = false;
@@ -44,7 +46,7 @@
 			<button type="submit"> 問題文を表示する </button>
 		</form>
 	{:else}
-		<ProblemView userName={userName} subjects={subjects} roomId={roomId} />
+		<ProblemView subjects={subjects}/>
 	{/if}
 </main>
 
