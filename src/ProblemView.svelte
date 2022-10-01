@@ -36,7 +36,7 @@
 			{#each subjects as item, index}
 				<li>
 					<div class="problemItems">
-						<h3>{item}</h3>
+						<h3>{item.title}</h3>
 					</div>
 				</li>
 			{/each}

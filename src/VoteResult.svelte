@@ -11,7 +11,7 @@
     async function reloadButtonClick() {
             var didSucceed = await getVoteResult(roomId);
             reloadData = didSucceed;
-            sort("votes");
+            sort("count");
             userName;
             resultdata=reloadData;
     }
@@ -22,9 +22,9 @@
 		let sortModifier = -1;
 		
 		let sort = (a, b) => 
-			(a[column] < b[column]) 
+			(a[column].count < b[column].count) 
 			? -1 * sortModifier 
-			: (a[column] > b[column]) 
+			: (a[column].count > b[column].count) 
 			? 1 * sortModifier 
 			: 0;
 		
@@ -42,7 +42,7 @@
         {#each resultdata as item, index}
             <li>
                 <div>
-                    <span>{index+1}位  "{item.answer}" : {item.votes}票</span>
+                    <span>{index+1}位  "{item.answer}" : {item.count}票</span>
                     <br />
                 </div>
             </li>

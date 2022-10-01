@@ -44,7 +44,7 @@
 			<button type="submit"> 問題文を表示する </button>
 		</form>
 	{:else}
-		<ProblemView {userName} {subjects} {roomId} />
+		<ProblemView userName={userName} subjects={subjects} roomId={roomId} />
 	{/if}
 </main>
 

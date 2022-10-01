@@ -15,11 +15,11 @@
         let hoge = document.getElementById("radio_form");
         var itemName = hoge.vote.value;
         if (itemName != "") {
-            voteItemName = answer[itemName];
+            voteItemName = answer[itemName].answer;
             const didVote = await postVoteAnswer(roomId,voteItemName, userName)
             const didSucceed = await getVoteResult(roomId);
             voteResult = didSucceed;
-            sort("votes");
+            sort("count");
             console.log("voteResult"+voteResult)
             voteFlag = true;
         } else {
@@ -33,9 +33,9 @@
 		let sortModifier = -1;
 		
 		let sort = (a, b) => 
-			(a[column] < b[column]) 
+			(a[column].count < b[column].count) 
 			? -1 * sortModifier 
-			: (a[column] > b[column]) 
+			: (a[column].count > b[column].count) 
 			? 1 * sortModifier 
 			: 0;
 		
@@ -54,7 +54,7 @@
                 {#each answer as item, index}
                     <li>
                         <div class="AnswerItems">
-                            <input type="radio" name="vote" value={index} /> {item}
+                            <input type="radio" name="vote" value={index} /> {item.answer}
                             <br />
                         </div>
                     </li>

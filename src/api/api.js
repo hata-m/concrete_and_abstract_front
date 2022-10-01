@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 // NOTE: .envファイルから読み込めないため、ここで指定
+// const URL_BASE = "https://concrete-and-abstract-nestjs-node.onrender.com/concrete-and-abstract/"
 const URL_BASE = "https://concrete-and-abstract-nestjs-node.onrender.com/"
 
 const getAnswers = async (subjectId) => {
-    const url = URL_BASE + "concrete-and-abstract/answers";
+    const url = URL_BASE + "answer/room/"+subjectId;
     try {
         const res = await axios.get(url);
         const answers = res.data;
@@ -16,7 +17,7 @@ const getAnswers = async (subjectId) => {
 }
 
 const getSubjects = async (subjectId) => {
-    const url = URL_BASE + "concrete-and-abstract/subjects";
+    const url = URL_BASE + "subject/room/"+subjectId;
     try {
         const res = await axios.get(url);
         const answers = res.data;
@@ -28,7 +29,7 @@ const getSubjects = async (subjectId) => {
 }
 
 const getVoteResult = async (subjectId) => {
-    const url = URL_BASE + "concrete-and-abstract/results";
+    const url = URL_BASE + "result/room/"+subjectId;
     try {
         const res = await axios.get(url);
         const results = res.data;
@@ -40,9 +41,9 @@ const getVoteResult = async (subjectId) => {
 }
 
 const postAnswer = async (subjectId, answer) => {
-    const url = URL_BASE + "concrete-and-abstract/answers";
+    const url = URL_BASE + "answer";
     const reqBody = {
-        subjectId: subjectId,
+        subjectId: Number(subjectId),
         answer: answer
     }
     try {
@@ -55,10 +56,11 @@ const postAnswer = async (subjectId, answer) => {
 }
 
 const postVoteAnswer = async (subjectId, answer, user) => {
-    const url = URL_BASE + "concrete-and-abstract/vote";
+    const url = URL_BASE + "vote";
     const reqBody = {
-        subjectId: subjectId,
-        user: user,
+        subjectId: Number(subjectId),
+        // user: user,
+        userId: 1,
         answer: answer
     }
     try {
