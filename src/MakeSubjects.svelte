@@ -5,6 +5,7 @@
 
     function registerSubject() {
         $registeredSubjects = [...$registeredSubjects, subject];
+        subject="";//入力欄の変数を初期化
     }
 
     function onSubmit() {}

@@ -3971,7 +3971,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (15:8) {#each $registeredSubjects as sub}
+    // (16:8) {#each $registeredSubjects as sub}
     function create_each_block(ctx) {
     	let div;
     	let t0_value = /*sub*/ ctx[4] + "";
@@ -3987,9 +3987,9 @@ var app = (function () {
     			t1 = space();
     			br = element("br");
     			t2 = space();
-    			add_location(br, file$3, 17, 16, 379);
+    			add_location(br, file$3, 18, 16, 411);
     			attr_dev(div, "class", "items");
-    			add_location(div, file$3, 15, 12, 321);
+    			add_location(div, file$3, 16, 12, 353);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -4010,7 +4010,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(15:8) {#each $registeredSubjects as sub}",
+    		source: "(16:8) {#each $registeredSubjects as sub}",
     		ctx
     	});
 
@@ -4062,26 +4062,26 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "登録";
     			attr_dev(div0, "class", "item-box svelte-1uhweme");
-    			add_location(div0, file$3, 13, 4, 243);
+    			add_location(div0, file$3, 14, 4, 275);
     			attr_dev(input, "class", "inp svelte-1uhweme");
     			attr_dev(input, "type", "text");
     			input.required = "";
     			attr_dev(input, "placeholder", "お題");
-    			add_location(input, file$3, 24, 16, 548);
+    			add_location(input, file$3, 25, 16, 580);
     			attr_dev(div1, "class", "input-container");
-    			add_location(div1, file$3, 23, 12, 502);
+    			add_location(div1, file$3, 24, 12, 534);
     			attr_dev(button0, "type", "button");
     			attr_dev(button0, "class", "btn svelte-1uhweme");
-    			add_location(button0, file$3, 32, 12, 779);
+    			add_location(button0, file$3, 33, 12, 811);
     			attr_dev(form, "class", "subject-form svelte-1uhweme");
-    			add_location(form, file$3, 22, 8, 462);
+    			add_location(form, file$3, 23, 8, 494);
     			attr_dev(div2, "class", "box svelte-1uhweme");
-    			add_location(div2, file$3, 21, 4, 436);
+    			add_location(div2, file$3, 22, 4, 468);
     			attr_dev(button1, "type", "button");
     			attr_dev(button1, "class", "btn");
-    			add_location(button1, file$3, 40, 8, 973);
-    			add_location(div3, file$3, 39, 4, 959);
-    			add_location(main, file$3, 12, 0, 232);
+    			add_location(button1, file$3, 41, 8, 1005);
+    			add_location(div3, file$3, 40, 4, 991);
+    			add_location(main, file$3, 13, 0, 264);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4180,6 +4180,7 @@ var app = (function () {
 
     	function registerSubject() {
     		set_store_value(registeredSubjects, $registeredSubjects = [...$registeredSubjects, subject], $registeredSubjects);
+    		$$invalidate(0, subject = ""); //入力欄の変数を初期化
     	}
 
     	const writable_props = [];
