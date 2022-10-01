@@ -1,17 +1,23 @@
 <script>
 	import ProblemView from "./ProblemView.svelte";
 	import { getAnswers, postAnswer, getSubjects } from "./api/api";
-    import { registeredUserName, registeredRoomId } from "./store/store";
+    import { registeredUserName, registeredRoomId, registeredUserId } from "./store/store";
 	let subjects = [];
 	let probleAcquired = true;
 	let userName = "";
+
 	let roomId = 0;
 
 	async function handleClick() {
 		if (userName && roomId) {
-			// TODO subjectIDを動的に
+			// const user = await createUserId(userName);	//userIdの生成
+			// let userId = user.id 
+
+			// registeredUserId.set(userId);
 			registeredRoomId.set(roomId);
 			registeredUserName.set(userName);
+
+
 			const subjectArray = await getSubjects($registeredRoomId);
 			subjects = subjectArray;
 			if (subjects) {

@@ -1,12 +1,13 @@
 <script>
 	import ProblemView from "./ProblemView.svelte";
 	import MakeSubjects from "./MakeSubjects.svelte";
-	import { getAnswers, postAnswer, getSubjects } from "./api/api";
-	import { registeredUserName, registeredRoomId } from "./store/store";
+	import { getAnswers, postAnswer, getSubjects, createRoomID, createUserId } from "./api/api";
+	import { registeredUserName, registeredRoomId, registeredUserId } from "./store/store";
 
 	let subjects = [];
 	let probleAcquired = true;
 	let userName = "";
+	let userId = 0;
 	let roomId = 0;
 
 	async function handleClick() {
@@ -19,8 +20,17 @@
 			// } else {
 			// 	alert("nodata");
 			// }
-			registeredUserName.update(userName);
-			registeredRoomId.update(roomId);
+			
+			// const user = await createUserId(userName);	//userIdの生成
+			// userId = user.id 
+			// const room = await createRoomID();			//roomIdの生成
+			// roomId = room.id;
+			
+			// storeの変数に書き込み
+			registeredUserId.set(userId);
+			registeredUserName.set(userName);
+			registeredRoomId.set(roomId);
+
 			probleAcquired = false;
 		}
 	}

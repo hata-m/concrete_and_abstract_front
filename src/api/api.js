@@ -72,5 +72,33 @@ const postVoteAnswer = async (subjectId, answer, user) => {
     }
 }
 
+const createUserId = async (user) => {
+    const url = URL_BASE + "vote";
+    const reqBody = {
+        name: user,
+    }
+    try {
+        const res = await axios.post(url, reqBody);
+        const results = res.data;
+        return results;
+    } catch (error) {
+        console.log(error);
+        return null
+    }
+}
 
-export { getAnswers, postAnswer, getSubjects, getVoteResult, postVoteAnswer }
+const createRoomID = async () => {
+    const url = URL_BASE + "room";
+    try {
+        const res = await axios.get(url);
+        const results = res.data;
+        return results;
+    } catch (error) {
+        console.log(error);
+    }
+    return null;
+}
+
+
+
+export { getAnswers, postAnswer, getSubjects, getVoteResult, postVoteAnswer , createUserId, createRoomID}
