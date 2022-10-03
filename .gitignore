@@ -1,3 +1,5 @@
-node_modules/
+node_modules/*
 public/
 svelte-bootstrap/
+node_modules/@smui/
+node_modules/@smui-extra/
