@@ -1,31 +1,5 @@
-<script>
-    import Router from "svelte-spa-router";
-    import Welcome from "./components/game/welcome/Welcome.svelte";
-    import CreateRoom from "./components/game/create-room/CreateRoom.svelte";
-    import JoinRoom from "./components/game/join-room/JoinRoom.svelte";
-    import MakeSubjects from "./components/game/make-subjects/MakeSubjects.svelte";
-    import Problem from "./components/game/problem/Problem.svelte";
-    import AnswerList from "./components/game/polling-place/AnswerList.svelte";
-    import VotingResult from "./components/game/voting-result/VotingResult.svelte";
-    // import { css,keyframes } from "emotion";
-
-    const routes = {
-        "/": Welcome,
-        "/create-room": CreateRoom,
-        "/join-room": JoinRoom,
-        "/make-subjects": MakeSubjects,
-        "/problem": Problem,
-        "/answerlist": AnswerList,
-        "/voting-result": VotingResult,
-        "*": Welcome
-    };
-</script>
-
-<Router {routes} />
-
 <style>
-
-    :global(button){
+    :global(button) {
         color: white;
         margin: 5px;
         height: 100px;
@@ -36,20 +10,20 @@
         font-size: xx-large;
     }
 
-    :global(input){
+    :global(input) {
         font-size: xx-large;
         width: 500px;
     }
 
-    :global(body){
-        background-color: #D3EBCD;
+    :global(body) {
+        background-color: #fff;
         display: flex;
-        flex-flow:  column;
+        flex-flow: column;
         justify-content: center;
         align-items: center;
     }
 
-    :global(main){
+    :global(main) {
         /* flex-flow:  column; */
         /* display: flex; */
         /* align-items: center; */
@@ -63,9 +37,8 @@
         /* background-color: white; */
     }
 
-    :global(button:hover){
+    :global(button:hover) {
         transition-duration: 500ms;
-        background-color: #839AA8;
+        background-color: #839aa8;
     }
-    
 </style>
