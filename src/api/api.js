@@ -110,10 +110,10 @@ const makeRoom = async () => {
 NOTE: 現在はAPI側がsubjectを1つずつしか登録できないため、単体登録前提. Svelteの方でループを回して登録
 TODO: API側が複数登録に対応できたらいっぺんに送る処理に変更
 */
-const registerSubjects = async (subject) => {
-    const url = URL_BASE + "subject";
+const registerSubjects = async (subjects) => {
+    const url = URL_BASE + "subject/bulk";
     try {
-        const res = await axios.post(url, subject);
+        const res = await axios.post(url, subjects);
         return res.status === 201
     } catch (error) {
         console.log(error);

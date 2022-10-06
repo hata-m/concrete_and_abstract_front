@@ -22,11 +22,12 @@
     }
 
     async function onSubmit() {
-        for (let i = 0; i < $registeredSubjects.length; i++) {
-            console.log($registeredSubjects[i]);
-            const ok = await registerSubjects($registeredSubjects[i]);
-            console.log(ok);
-        }
+        const ok = await registerSubjects($registeredSubjects);
+        // for (let i = 0; i < $registeredSubjects.length; i++) {
+        //     console.log($registeredSubjects[i]);
+        //     const ok = await registerSubjects($registeredSubjects[i]);
+        //     console.log(ok);
+        // }
 
         push("/problem");
     }
