@@ -6,6 +6,10 @@
     let userName = "";
     let roomId = 0;
 
+    user.subscribe((value) => {
+        userName = value.name;
+    });
+
     async function handleClick() {
         if (userName && roomId) {
             const [ok, userInfo] = await createUser({
@@ -21,6 +25,10 @@
                 push("/problem");
             } else {
             }
+
+        }
+        if(roomId==0){
+            alert("RoomIDが0の部屋は存在しません。")
         }
     }
 </script>

@@ -7,6 +7,8 @@
     let roomId;
     let voteResult = [];
 
+    $: roomIdStr = "room: " + roomId;
+
     onMount(async () => {
         roomID.subscribe((value) => {
             roomId = value;
@@ -46,6 +48,9 @@
 </script>
 
 <main>
+    <div>
+        <h3 class="room">{roomIdStr}</h3>
+    </div>
     <h1 id="votedata">"{myvote}"に投票しました</h1>
     <div class="reload">
         <h2>現在の投票結果</h2>
@@ -93,5 +98,8 @@
     .reloadbutton {
         max-height: 45px;
         margin: 10px;
+    }
+    .room {
+        text-align: right;
     }
 </style>
