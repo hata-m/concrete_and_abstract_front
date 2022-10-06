@@ -26,18 +26,18 @@
         align-items: center;
         min-height: 100vh;
         min-width: 100vw;
-        background: linear-gradient(90deg, #49aeff, #ff4c89);
+        background: linear-gradient(90deg, #5bd1d7, #fdc4b6);
     }
     .circle {
         position: relative;
-        width: 800px;
+        width: 1000px;
         height: 800px;
-        background: linear-gradient(90deg, #49aeff, #ff4c89);
+        background: linear-gradient(90deg, #5bd1d7, #fdc4b6);
         border-radius: 50%;
     }
     .circle i {
         position: absolute;
-        background: linear-gradient(90deg, #49aeff, #ff4c89);
+        background: linear-gradient(90deg, #5bd1d7, #fdc4b6);
         filter: blur(50px);
         z-index: 2;
         inset: 5px;
