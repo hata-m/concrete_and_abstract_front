@@ -22,7 +22,6 @@
     });
 
     let voteResult = [];
-    let voteItemName = "";
 
     let labeldata = "投票前";
     $: label = labeldata;
@@ -45,20 +44,6 @@
         }
     }
 
-    // TODO ソートは基本的にAPI側で実装する。フロントエンドはデータの受け渡しと画面ロジックに特化
-    $: sort = (column) => {
-        // Modifier to sorting function for ascending or descending
-        let sortModifier = -1;
-
-        let sort = (a, b) =>
-            a[column] < b[column]
-                ? -1 * sortModifier
-                : a[column] > b[column]
-                ? 1 * sortModifier
-                : 0;
-
-        voteResult = voteResult.sort(sort);
-    };
 </script>
 
 <main>

@@ -29,7 +29,7 @@
                 required
             />
         </div>
-        <button type="submit"> 部屋を生成し、問題文を表示する </button>
+        <button type="submit"> 部屋を生成し、問題文を作成する </button>
     </form>
 </main>
 

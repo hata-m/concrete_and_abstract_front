@@ -38,7 +38,7 @@
             {#each $registeredSubjects as item}
                 <li>
                     <div class="items">
-                        {item}
+                        {item.title}
                         <br />
                     </div>
                 </li>

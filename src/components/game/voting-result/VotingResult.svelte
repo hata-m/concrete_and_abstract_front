@@ -18,16 +18,16 @@
 
         const [didSucceed, res] = await getVoteResultByRoomID(roomId);
         voteResult = res;
+        sort("count");
     });
 
     $: resultdata = voteResult;
-    var reloadData = [];
+
 
     async function reloadButtonClick() {
-        var didSucceed = await getVoteResultByRoomID(roomId);
-        reloadData = didSucceed;
-        sort("votes");
-        resultdata = reloadData;
+        const [didSucceed, res] = await getVoteResultByRoomID(roomId);
+        voteResult = res;
+        sort("count");
     }
 
     $: sort = (column) => {
@@ -41,7 +41,7 @@
                 ? 1 * sortModifier
                 : 0;
 
-        reloadData = reloadData.sort(sort);
+                voteResult = voteResult.sort(sort);
     };
 </script>
 
