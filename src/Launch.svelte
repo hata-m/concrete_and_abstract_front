@@ -16,7 +16,7 @@
         "/problem": Problem,
         "/answerlist": AnswerList,
         "/voting-result": VotingResult,
-        "*": Welcome,
+        "*": Welcome
     };
 </script>
 
