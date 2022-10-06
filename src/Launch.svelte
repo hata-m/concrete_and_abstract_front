@@ -8,6 +8,7 @@
         background-color: #635666;
         border: 0;
         font-size: xx-large;
+        border-radius: 10px;
     }
 
     :global(input) {

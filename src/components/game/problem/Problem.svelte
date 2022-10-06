@@ -21,7 +21,6 @@
         roomID.subscribe((value) => {
             roomId = value;
         });
-        // roomId = 38
         registeredSubjects.subscribe((value) => {
             subjects = value;
         });
@@ -55,15 +54,16 @@
 
 <main>
     <div>
-        <h3 class="room">{roomIdStr}</h3>
+        <h1 class="room">{roomIdStr}</h1>
     </div>
-    <h2>お題</h2>
-    <h3>以下の単語を抽象化してね！</h3>
+    <h1>お題</h1>
+    <h1>以下の単語を抽象化してね！</h1>
     <ul>
         {#each subjects as item}
             <li>
                 <div class="problemItems">
-                    <h3>{item.title}</h3>
+                    <!-- svelte-ignore a11y-label-has-associated-control -->
+                    <label>{item.title}</label>
                 </div>
             </li>
         {/each}
@@ -93,15 +93,24 @@
         display: inline-block;
 
         /* 見た目整える用 */
-        width: 100px;
-        height: 50px;
-        background: #fa8072;
-        margin-right: 5px;
+        padding: 15px;
+        background: #FFDAB9;
+        height: auto;
+        margin: 5px;
+        border-radius: 10px;
+    }
+    ul {
+        padding-left: 0ex;
     }
     .room {
         text-align: right;
     }
     input{
         margin: 5px;
+    }
+    .problemItems{
+        font-size: xx-large;
+        font-weight: bold;
+        height: auto;
     }
 </style>
