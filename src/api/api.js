@@ -77,7 +77,12 @@ const getSubjectsByRoomID = async (roomId) => {
     const url = URL_BASE + "subject/room/" + roomId;
     try {
         const res = await axios.get(url);
-        return [true, res.data];
+        console.log(res.data)
+        if(res.data.length>0){
+            return [true, res.data];
+        }
+        return [false,null];
+        
     } catch (error) {
         console.log(error);
         return [false, null];

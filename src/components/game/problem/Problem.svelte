@@ -37,6 +37,10 @@
         const [ok, res] = await getSubjectsByRoomID(roomId);
         if (ok) {
             subjects = res;
+        }else{
+            if(!alert('部屋が存在しません。RoomIDを確認してください。')){
+                push("/join-room");
+            }
         }
     });
 

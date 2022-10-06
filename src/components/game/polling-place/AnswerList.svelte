@@ -8,6 +8,8 @@
     let roomId;
     let userId;
 
+    $: roomIdStr = "room: " + roomId;
+
     user.subscribe((value) => {
         userId = value.id;
     });
@@ -47,6 +49,9 @@
 </script>
 
 <main>
+    <div>
+        <h3 class="room">{roomIdStr}</h3>
+    </div>
     <h1 id="votedata">{label}</h1>
     <h2>解答内容</h2>
     <form id="radio_form">
@@ -82,5 +87,8 @@
         text-align: left;
         /* 見た目整える用 */
         background: #f0f8ff;
+    }
+    .room {
+        text-align: right;
     }
 </style>
