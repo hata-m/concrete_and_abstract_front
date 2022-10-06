@@ -6,10 +6,10 @@
 
 // export default app;
 
-
 import Launch from './Launch.svelte';
+import Common from './Common.svelte';
 
-const app = new Launch({
+const app = new Common({
 	target: document.body,
 });
 
