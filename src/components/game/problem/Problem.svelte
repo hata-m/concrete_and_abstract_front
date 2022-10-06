@@ -21,7 +21,7 @@
         roomID.subscribe((value) => {
             roomId = value;
         });
-
+        // roomId = 38
         registeredSubjects.subscribe((value) => {
             subjects = value;
         });
@@ -58,7 +58,7 @@
         <h3 class="room">{roomIdStr}</h3>
     </div>
     <h2>お題</h2>
-    <h3>下記の単語に共通する単語を考えてください</h3>
+    <h3>以下の単語を抽象化してね！</h3>
     <ul>
         {#each subjects as item}
             <li>
@@ -68,8 +68,6 @@
             </li>
         {/each}
     </ul>
-
-    <h2>{userName} さんの回答を記入してください</h2>
     <form on:submit={handleSubmit}>
         <div>
             <input
@@ -79,15 +77,15 @@
                 required
             />
         </div>
-        <button type="submit">回答を登録する</button>
+        <button type="submit">抽象化</button>
     </form>
 </main>
 
 <style>
     main {
         text-align: center;
-        padding: 1em;
-        max-width: 450px;
+        /* padding: 1em;
+        max-width: 450px; */
         margin: 0 auto;
     }
     li {
@@ -102,5 +100,8 @@
     }
     .room {
         text-align: right;
+    }
+    input{
+        margin: 5px;
     }
 </style>

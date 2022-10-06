@@ -19,7 +19,7 @@
 </script>
 
 <main>
-    <h3>ユーザ名を入力してください。</h3>
+    <!-- <h3>ユーザ名を入力してください。</h3> -->
     <form on:submit={onSubmit}>
         <div>
             <input
@@ -29,7 +29,7 @@
                 required
             />
         </div>
-        <button type="submit"> 部屋を生成し、問題文を作成する </button>
+        <button type="submit"> はじめる </button>
     </form>
 </main>
 

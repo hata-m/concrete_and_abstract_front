@@ -4,7 +4,7 @@
     import { roomID, user } from "../../../store/store";
 
     let userName = "";
-    let roomId = 0;
+    let roomId;
 
     user.subscribe((value) => {
         userName = value.name;
@@ -25,16 +25,15 @@
                 push("/problem");
             } else {
             }
-
         }
-        if(roomId==0){
-            alert("RoomIDが0の部屋は存在しません。")
+        if (roomId == 0) {
+            alert("部屋が存在しません。");
         }
     }
 </script>
 
 <main>
-    <h3>ユーザ名とRoomIDを入力してください。</h3>
+    <!-- <h3>ユーザ名と部屋番号を入力してください。</h3> -->
     <form on:submit={handleClick}>
         <div>
             <input
@@ -48,19 +47,17 @@
             <input
                 bind:value={roomId}
                 type="text"
-                placeholder="RoomID"
+                placeholder="部屋番号"
                 required
             />
         </div>
-        <button type="submit"> 問題文を表示する </button>
+        <button type="submit"> さんかする </button>
     </form>
 </main>
 
 <style>
-    main {
-        text-align: center;
-        padding: 1em;
-        max-width: 450px;
-        margin: 0 auto;
+    input{
+        /* height: fit-content; */
+        margin: 5px;
     }
 </style>

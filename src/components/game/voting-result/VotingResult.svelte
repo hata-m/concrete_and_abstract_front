@@ -51,7 +51,9 @@
     <div>
         <h3 class="room">{roomIdStr}</h3>
     </div>
-    <h1 id="votedata">"{myvote}"に投票しました</h1>
+    {#if myvote!=""}
+        <h1 id="votedata">"{myvote}"に投票しました</h1>
+    {/if}
     <div class="reload">
         <h2>現在の投票結果</h2>
         <button class="reloadbutton" on:click={reloadButtonClick}>
@@ -96,8 +98,7 @@
         align-items: center;
     }
     .reloadbutton {
-        max-height: 45px;
-        margin: 10px;
+         max-width: 100px;
     }
     .room {
         text-align: right;

@@ -3,13 +3,13 @@
 </script>
 
 <main>
-    <h1>アプリケーションへようこそ！</h1>
+    <h1>具体と抽象</h1>
     <div class="room">
         <form on:click={() => push("/create-room")}>
-            <button> 部屋を作成する </button>
+            <button> はじめる </button>
         </form>
         <form on:click={() => push("/join-room")}>
-            <button> 部屋に参加する </button>
+            <button> さんかする </button>
         </form>
     </div>
 </main>
@@ -22,12 +22,12 @@
         margin: 0 auto;
     }
 
-    .room {
+    /* .room {
         display: flex;
         justify-content: center;
-    }
+    } */
 
-    button {
+    /* button {
         color: white;
         margin: 5px;
         height: 100px;
@@ -40,5 +40,5 @@
     button:hover {
         transition-duration: 500ms;
         background-color: #64beff;
-    }
+    } */
 </style>

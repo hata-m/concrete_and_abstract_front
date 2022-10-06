@@ -25,12 +25,34 @@
     }
 
     async function onSubmit() {
-        const ok = await registerSubjects($registeredSubjects);
-        push("/problem");
+        if($registeredSubjects.length>0){
+            const ok = await registerSubjects($registeredSubjects);
+            push("/voting-result");
+        }else{
+            alert("お題が登録されていません");
+        }
+
     }
 </script>
 
 <main>
+    <div class="box">
+        <form class="subject-form">
+            <input
+                class="inp"
+                type="text"
+                required=""
+                bind:value={subject}
+                placeholder="具体"
+            />
+            <button
+                type="button"
+                class="btn"
+                on:click|preventDefault={addSubject}>追加</button
+            >
+        </form>
+    </div>
+
     <div>
         <ul>
             {#each $registeredSubjects as item}
@@ -43,43 +65,43 @@
             {/each}
         </ul>
     </div>
-    <div class="box">
-        <form class="subject-form">
-            <div class="input-container">
-                <input
-                    class="inp"
-                    type="text"
-                    required=""
-                    bind:value={subject}
-                    placeholder="お題"
-                />
-            </div>
-            <button
-                type="button"
-                class="btn"
-                on:click|preventDefault={addSubject}>追加</button
-            >
-        </form>
-    </div>
+    
     <div>
-        <button on:click={onSubmit}>登録</button>
+        <button class="startbtn" on:click={onSubmit}>登録</button>
     </div>
 </main>
 
 <style>
-    main {
-        display: flex;
-    }
+
 
     .subject-form {
         display: flex;
     }
 
-    .subject-form .input-container .inp {
-        height: 50px;
+    ul {
+        font-size: xx-large;
+        min-height: 200px;
+        align-items: flex-start;
     }
 
-    .subject-form .btn {
-        height: 50px;
+    li{
+        margin: 5px;
+    }
+
+    main{
+        width: 600px;
+    }
+
+    input{
+        /* height: fit-content; */
+        margin: 5px;
+    }
+
+    .startbtn {
+        width:calc(100% - 10px);
+        /* margin: 0px; */
+    }
+    .btn {
+        width: 125px;
     }
 </style>
