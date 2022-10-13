@@ -69,7 +69,7 @@
                         {#if item.title.indexOf("?url=") != -1}
                             <a
                                 class="news-title"
-                                href={item.title.split("?url="[1])}
+                                href={item.title.split("?url=")[1]}
                                 target="_blank"
                                 rel="noreferrer noopener">{item.title.split("?url=")[0].substring(0, 30)}</a
                             >
