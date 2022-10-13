@@ -52,15 +52,17 @@
         <h1 class="room">{roomIdStr}</h1>
     </div>
     <h1>お題</h1>
-    <h1>以下の単語を抽象化してね！</h1>
+    <h1>以下の要素を抽象化してね！</h1>
     <ul>
         {#each subjects as item}
             <li>
                 <div class="problemItems">
                     <!-- svelte-ignore a11y-label-has-associated-control -->
                     <label>
-                        {#if item.title.startsWith("https://")}
-                            {item.title.substring(4, 30)}
+                        {#if item.title.indexOf("?url=") != -1}
+                            <a href={item.title.split("?url=")[1]} target="_blank" rel="noopener noreferrer"
+                                >{item.title.split("?url=")[0].substring(0, 30)}</a
+                            >
                         {:else}
                             {item.title}
                         {/if}

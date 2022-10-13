@@ -177,24 +177,28 @@ export const fetchNews = async () => {
     const url = URL_BASE + "subject/news";
     try {
         const res = await axios.get(url);
-        if (res.status !== 201 || !res.data) {
+        if (res.status !== 200 || !res.data) {
             throw "No Data";
         }
         const articles = res.data;
+        console.log(articles);
         const selectedArticles = [];
         let i = 0;
         let len = articles.length;
-        while (i < 5) {
+        console.log(len);
+        for (let i = 0; i < 3; i++) {
             if (len < 1) {
                 break;
             }
-            rand = Math.floor( Math.random() * len); 
+            const rand = Math.floor( Math.random() * len); 
             selectedArticles.push(articles[rand]);
+            console.log(selectedArticles);
             delete articles[rand];
             len = articles.length;
         }
+        console.log(selectedArticles);
         return selectedArticles;
-        
+
     } catch (error) {
         console.log(error);
         return [

@@ -46,7 +46,7 @@
                 ...$registeredSubjects,
                 {
                     roomId: Number(roomId),
-                    title: article["url"]
+                    title: article["title"] + "?url=" + article["url"]
                 }
             ];
         });
@@ -66,8 +66,13 @@
             {#each $registeredSubjects as item, index}
                 <li class="subject-item">
                     <div class="items">
-                        {#if item.title.startsWith("https://")}
-                            <a href={item.title} target="_blank" rel="noreferrer noopener">{item.title}</a>
+                        {#if item.title.indexOf("?url=") != -1}
+                            <a
+                                class="news-title"
+                                href={item.title.split("?url="[1])}
+                                target="_blank"
+                                rel="noreferrer noopener">{item.title.split("?url=")[0].substring(0, 30)}</a
+                            >
                         {:else}
                             {item.title}
                         {/if}
@@ -132,15 +137,13 @@
     }
 
     .delete-button {
-        width: 3vw;
-        height: 5vh;
+        width: 4vw;
+        height: 10vh;
         font-size: small;
     }
 
     .items {
         margin: auto 0;
         width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
 </style>
