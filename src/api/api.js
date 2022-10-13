@@ -173,4 +173,35 @@ const getVoteResultByRoomID = async (roomId) => {
     }
 }
 
+export const fetchNews = async () => {
+    const url = URL_BASE + "subject/news";
+    try {
+        const res = await axios.get(url);
+        if (res.status !== 201 || !res.data) {
+            throw "No Data";
+        }
+        const articles = res.data;
+        const selectedArticles = [];
+        let i = 0;
+        let len = articles.length;
+        while (i < 5) {
+            if (len < 1) {
+                break;
+            }
+            rand = Math.floor( Math.random() * len); 
+            selectedArticles.push(articles[rand]);
+            delete articles[rand];
+            len = articles.length;
+        }
+        return selectedArticles;
+        
+    } catch (error) {
+        console.log(error);
+        return [
+            {title: "NASA、小惑星周回軌道を32分変更に成功 – 旅行業界・航空業界 最新情報 - 航空新聞社", url: "https://www.jwing.net/news/57620"},
+            {title: "京都縦貫自動車道 77歳女性運転の乗用車が逆走事故 2人死亡 - nhk.or.jp", url: "https://www3.nhk.or.jp/news/html/20221013/k10013857191000.html"}
+        ];
+    }
+}
+
 export { getAnswers, postAnswer, getSubjects, getVoteResult, postVoteAnswer, getSubjectsByRoomID, makeRoom, registerSubjects, postAnswerByRoomID, getAnswersByRoomID, voteByID, getVoteResultByRoomID }
