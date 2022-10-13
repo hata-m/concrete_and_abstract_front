@@ -8,11 +8,13 @@
     import { getAnswersByRoomID, voteByID } from "../../../api/api";
     import { roomID, user, myVote } from "../../../store/store";
 
-    let answers = [];
+    // let answers = [];
+    let answer =[]
     let roomId;
     let userId;
 
     $: roomIdStr = "room: " + roomId;
+    $: answers = answer;
 
     user.subscribe((value) => {
         userId = value.id;
@@ -24,8 +26,14 @@
         });
         const [ok, res] = await getAnswersByRoomID(roomId);
         console.log(res);
-        answers = res;
+        answer = res;
     });
+
+    setInterval(async () => {
+        const [ok, res] = await getAnswersByRoomID(roomId);
+        console.log(res);
+        answer = res;
+    }, 1000);
 
     let voteResult = [];
 

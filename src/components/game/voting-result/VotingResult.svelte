@@ -26,6 +26,12 @@
         // roomId = 38;
     });
 
+    setInterval(async () => {
+        const [didSucceed, res] = await getVoteResultByRoomID(roomId);
+        voteResult = res;
+        sort("count");
+    }, 1000);
+
     $: resultdata = voteResult;
 
 
@@ -59,9 +65,9 @@
     {/if}
     <div class="reload">
         <h2>現在の投票結果</h2>
-        <button class="reloadbutton" on:click={reloadButtonClick}>
+        <!-- <button class="reloadbutton" on:click={reloadButtonClick}>
             <span class="material-symbols-outlined">refresh</span>
-        </button>
+        </button> -->
     </div>
     <ul>
         {#each resultdata as item, index}
@@ -109,16 +115,16 @@
         align-items: center;
         padding: 5px;
     }
-    .reloadbutton {
-         /* max-width: 100px; */
+    /* .reloadbutton {
+         max-width: 100px;
          width: auto;
          height: auto;
-    }
+    } */
     .room {
         text-align: right;
     }
-    .material-symbols-outlined {
+    /* .material-symbols-outlined {
         font-size: 50px;
-    }
+    } */
 
 </style>
