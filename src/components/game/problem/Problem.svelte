@@ -1,11 +1,6 @@
 <script>
     import { push } from "svelte-spa-router";
-    import {
-        roomID,
-        registeredSubjects,
-        user,
-        myAnswer,
-    } from "../../../store/store";
+    import { roomID, registeredSubjects, user, myAnswer } from "../../../store/store";
     import { getSubjectsByRoomID, postAnswerByRoomID } from "../../../api/api";
     import { onMount } from "svelte";
 
@@ -36,8 +31,8 @@
         const [ok, res] = await getSubjectsByRoomID(roomId);
         if (ok) {
             subjects = res;
-        }else{
-            if(!alert('部屋が存在しません。RoomIDを確認してください。')){
+        } else {
+            if (!alert("部屋が存在しません。RoomIDを確認してください。")) {
                 push("/join-room");
             }
         }
@@ -63,19 +58,20 @@
             <li>
                 <div class="problemItems">
                     <!-- svelte-ignore a11y-label-has-associated-control -->
-                    <label>{item.title}</label>
+                    <label>
+                        {#if item.title.startsWith("https://")}
+                            {item.title.substring(4, 30)}
+                        {:else}
+                            {item.title}
+                        {/if}
+                    </label>
                 </div>
             </li>
         {/each}
     </ul>
     <form on:submit={handleSubmit}>
         <div>
-            <input
-                bind:value={answer}
-                type="text"
-                placeholder="解答欄"
-                required
-            />
+            <input bind:value={answer} type="text" placeholder="解答欄" required />
         </div>
         <button type="submit">抽象化</button>
     </form>
@@ -94,7 +90,7 @@
 
         /* 見た目整える用 */
         padding: 15px;
-        background: #FFDAB9;
+        background: #ffdab9;
         height: auto;
         margin: 5px;
         border-radius: 10px;
@@ -105,10 +101,10 @@
     .room {
         text-align: right;
     }
-    input{
+    input {
         margin: 5px;
     }
-    .problemItems{
+    .problemItems {
         font-size: xx-large;
         font-weight: bold;
         height: auto;
