@@ -2,14 +2,16 @@
     import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
 </script> -->
 <script>
-    import DataTable, { Head, Body, Row, Cell } from '@smui/data-table';
+    import DataTable, { Head, Body, Row, Cell } from "@smui/data-table";
     import { push } from "svelte-spa-router";
     import { onMount } from "svelte";
     import { getAnswersByRoomID, voteByID } from "../../../api/api";
-    import { roomID, user, myVote } from "../../../store/store";
+    import { roomID, user, myVote, myAnswer } from "../../../store/store";
 
     // let answers = [];
     let answer =[]
+    let myAns;
+
     let roomId;
     let userId;
 
@@ -20,19 +22,33 @@
         userId = value.id;
     });
 
+    myAnswer.subscribe((value) => {
+        myAns = value.answer;
+    });
+
     onMount(async () => {
         roomID.subscribe((value) => {
             roomId = value;
         });
         const [ok, res] = await getAnswersByRoomID(roomId);
-        console.log(res);
-        answer = res;
+
+        if (ok) {
+            answers = res.filter((ans) => ans.answer !== myAns);
+            console.log(answers);
+        } else {
+            alert("解答が取得できませんでした");
+        }
+
     });
 
     setInterval(async () => {
         const [ok, res] = await getAnswersByRoomID(roomId);
-        console.log(res);
-        answer = res;
+        if (ok) {
+            answers = res.filter((ans) => ans.answer !== myAns);
+            console.log(answers);
+        } else {
+            alert("解答が取得できませんでした");
+        }
     }, 1000);
 
     let voteResult = [];
@@ -47,7 +63,7 @@
         if (voteAnswerIdx) {
             const didSucceed = await voteByID({
                 userId: Number(userId),
-                answerId: Number(voteAnswerObj.id),
+                answerId: Number(voteAnswerObj.id)
             });
             if (didSucceed) {
                 myVote.set(voteAnswerObj.answer);
@@ -57,7 +73,6 @@
             labeldata = "投票項目が選択されていません";
         }
     }
-
 </script>
 
 <main>
@@ -66,7 +81,7 @@
     </div>
     <h1>解答内容</h1>
     <form id="radio_form">
-       <ul>
+        <ul>
             {#each answers as item, index}
                 <li>
                     <div class="AnswerItems">
@@ -111,7 +126,7 @@
         padding-left: 0ex;
     }
 
-    input{
+    input {
         width: auto;
         margin: 5px;
     }
@@ -119,12 +134,8 @@
         text-align: right;
     }
 
-    .AnswerItems{
+    .AnswerItems {
         display: flex;
         align-items: center;
     }
-
-
-
-
 </style>
